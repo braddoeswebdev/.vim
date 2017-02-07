@@ -1,3 +1,24 @@
+if has('win32') || has('win64')
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  set guifont=Inconsolata:h10:cANSI:qDRAFT
+  set backspace=indent,eol,start
+else
+  set guifont=Inconsolata\ Medium\ 10
+endif
+
+func! Backspace()
+  if col('.') == 1
+    if line('.')  != 1
+      return  "\<ESC>kA\<Del>"
+    else
+      return ""
+    endif
+  else
+    return "\<Left>\<Del>"
+  endif
+endfunc
+inoremap <BS> <c-r>=Backspace()<CR>
+
 
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -26,6 +47,7 @@
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-markdown'
+    Plugin 'StanAngeloff/php.vim'
 
 
     if iCanHazVundle == 0
@@ -47,11 +69,11 @@ set expandtab
 set smartindent
 set autoindent
 set showmatch
+set number
 set relativenumber
 
 syntax on
-colorscheme Tomorrow-Night-Bright
-set guifont=Inconsolata\ Medium\ 14
+" colorscheme Tomorrow-Night-Bright
 set cursorline
 set wildmenu
 set lazyredraw
@@ -79,6 +101,7 @@ set smartcase
 set magic
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
+set autochdir
 set nobackup
 set nowb
 set noswapfile
