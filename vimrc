@@ -81,7 +81,10 @@ let mapleader=" "
 
 map <leader>w :wa<CR>
 map <leader>s :source ~/.vimrc<CR>
-inoremap jk <Esc>
+noremap jk <Esc>
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
 
 map <C-\> :NERDTreeToggle<CR>
 
